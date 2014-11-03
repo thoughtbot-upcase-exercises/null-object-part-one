@@ -3,10 +3,6 @@ class User
   attr_accessor :credit_card
   attr_writer :subscription
 
-  def subscription
-    @subscription || NoSubscription.new
-  end
-
   def charge
     subscription.charge(credit_card)
   end
@@ -17,5 +13,11 @@ class User
 
   def price
     subscription.price
+  end
+
+  private
+
+  def subscription
+    @subscription || NoSubscription.new
   end
 end
