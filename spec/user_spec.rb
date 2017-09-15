@@ -5,7 +5,7 @@ describe User do
     it 'charges its subscription to its credit card' do
       credit_card = double('credit_card')
       subscription = double('subscription')
-      subscription.stub(:charge)
+      allow(subscription).to receive(:charge)
       user = User.new(subscription: subscription, credit_card: credit_card)
 
       user.charge
@@ -33,7 +33,7 @@ describe User do
     it 'returns false without a subscription' do
       user = User.new(subscription: nil)
 
-      expect(user.has_mentoring?).to be_false
+      expect(user.has_mentoring?).to be_falsey
     end
   end
 
